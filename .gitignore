@@ -1,0 +1,6 @@
+.DS_Store
+.wrangler/
+.agents/
+node_modules/
+.system_generated/
+*.log
