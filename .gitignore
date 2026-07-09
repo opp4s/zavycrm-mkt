@@ -4,3 +4,8 @@
 node_modules/
 .system_generated/
 *.log
+
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
