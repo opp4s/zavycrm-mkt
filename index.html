@@ -359,13 +359,38 @@
     /* Responsive */
     @media (max-width: 900px) {
       .hero-grid, .split { grid-template-columns: 1fr; }
-      .hero-visual { order: -1; }
       .features-grid, .steps, .tgrid { grid-template-columns: 1fr; }
       .foot-grid { grid-template-columns: 1fr; gap: 28px; }
-      .nav-links { display: none; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        background: #fff;
+        border-bottom: 1px solid var(--border);
+        padding: 20px;
+        gap: 16px;
+        box-shadow: var(--shadow);
+        align-items: stretch;
+        z-index: 99;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .nav-links a {
+        padding: 10px 0;
+        border-bottom: 1px solid var(--bg-soft);
+        font-size: 1.05rem;
+      }
+      .nav-links a:last-child {
+        border-bottom: none;
+      }
       .menu-btn { display: block; }
       .section { padding: 60px 0; }
       .hero { padding: 48px 0 20px; }
+      .mock-body { grid-template-columns: 1fr; gap: 20px; }
       .addons-grid { grid-template-columns: 1fr; }
       .included { grid-template-columns: 1fr; gap: 26px; padding: 32px 26px; text-align: center; }
       .included-left p { max-width: none; }
@@ -374,6 +399,7 @@
       /* Plans become a horizontal carousel; Business first */
       .plans {
         display: flex; grid-template-columns: none;
+        align-items: stretch;
         overflow-x: auto; scroll-snap-type: x mandatory;
         gap: 16px; padding: 22px 20px 8px; margin: 0 -20px;
         -webkit-overflow-scrolling: touch; scrollbar-width: none;
@@ -411,7 +437,7 @@
       </nav>
       <div class="nav-cta">
         <a class="btn btn-primary" href="https://app.zavycrm.com/cadastrar">Testar grátis</a>
-        <button class="menu-btn" aria-label="Abrir menu" onclick="var n=document.querySelector('.nav-links'); n.style.display = (getComputedStyle(n).display==='none'?'flex':'none');">
+        <button class="menu-btn" aria-label="Abrir menu" onclick="document.querySelector('.nav-links').classList.toggle('active');">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         </button>
       </div>
@@ -945,6 +971,14 @@
             btn.disabled = false;
             btn.textContent = original;
           });
+      });
+      // Fecha o menu mobile ao clicar em um link de navegação
+      var mobileLinks = document.querySelectorAll('.nav-links a');
+      mobileLinks.forEach(function (link) {
+        link.addEventListener('click', function () {
+          var nav = document.querySelector('.nav-links');
+          if (nav) nav.classList.remove('active');
+        });
       });
     })();
   </script>
