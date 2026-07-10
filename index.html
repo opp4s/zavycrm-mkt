@@ -6,12 +6,23 @@
   <title>zavy CRM — Atendimento no WhatsApp com Agentes de IA</title>
   <meta name="description" content="O CRM que atende no WhatsApp por você. Agentes de IA respondem 24/7, qualificam leads e organizam tudo em um funil visual. Teste grátis." />
   <meta name="theme-color" content="#2563EB" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://zavycrm.com/" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="zavy CRM — Atendimento no WhatsApp com Agentes de IA" />
   <meta property="og:description" content="Agentes de IA que atendem, qualificam e organizam seus leads no WhatsApp 24 horas por dia." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="pt_BR" />
+  <meta property="og:url" content="https://zavycrm.com/" />
+  <meta property="og:site_name" content="zavy CRM" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="zavy CRM — Atendimento no WhatsApp com Agentes de IA" />
+  <meta name="twitter:description" content="Agentes de IA que atendem, qualificam e organizam seus leads no WhatsApp 24 horas por dia." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -223,18 +234,12 @@
     .plan {
       display: flex; flex-direction: column; text-align: left;
       background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 24px 20px; transition: all .3s ease-in-out;
+      padding: 24px 20px; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
     }
     .plan:hover {
       border-color: #C7D8FB;
-      transform: translateY(-12px) scale(1.03);
-      box-shadow: 0 30px 60px -10px rgba(15,23,42,.15), 0 20px 40px -15px rgba(37,99,235,.3);
-    }
-    .plan:hover .btn-ghost {
-      background: var(--primary);
-      color: #fff;
-      border-color: var(--primary);
-      box-shadow: 0 8px 20px rgba(37,99,235,.2);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
     }
     .plan .promise { font-size: .78rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: .03em; margin-bottom: 3px; min-height: 2.8em; display: flex; align-items: flex-end; }
     .plan h3 { font-size: 1.4rem; margin: 0 0 3px; }
@@ -257,12 +262,8 @@
       padding: 30px 22px;
     }
     .plan.featured:hover {
-      transform: translateY(-12px) scale(1.07);
-      box-shadow: 0 35px 70px -10px rgba(15,23,42,.20), 0 25px 50px -15px rgba(37,99,235,.40);
-    }
-    .plan.featured:hover .btn-primary {
-      background: var(--accent-dark);
-      box-shadow: 0 10px 24px rgba(234,88,12,.4);
+      transform: scale(1.04) translateY(-4px);
+      box-shadow: var(--shadow-lg);
     }
     .plan.featured h3 { color: var(--primary); }
     .plan.featured .btn { min-height: 56px; font-size: 1.04rem; }
@@ -419,6 +420,68 @@
       * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
     }
   </style>
+
+  <!-- Structured data (SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "zavy CRM",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "url": "https://zavycrm.com/",
+    "description": "CRM para WhatsApp com Agentes de IA que atendem, qualificam e organizam leads automaticamente em um funil visual, 24 horas por dia.",
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "BRL",
+      "lowPrice": "49",
+      "highPrice": "249",
+      "offerCount": "4"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "zavy CRM",
+    "url": "https://zavycrm.com/",
+    "logo": "https://zavycrm.com/favicon.png"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Preciso saber programar para usar?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Não. Você cria e ensina o agente escrevendo em português comum. Todo o resto é feito por telas simples, sem código." }
+      },
+      {
+        "@type": "Question",
+        "name": "A IA responde parecido com um robô?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Não. Ela usa o tom de voz que você definir e responde de forma natural. Também entende áudios e imagens que o cliente envia." }
+      },
+      {
+        "@type": "Question",
+        "name": "Consigo assumir a conversa quando quiser?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sim. A qualquer momento você ou sua equipe podem entrar na conversa. A IA também transfere sozinha quando o cliente pede um humano." }
+      },
+      {
+        "@type": "Question",
+        "name": "Funciona com o número de WhatsApp que já uso?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sim. Você conecta seu número atual lendo um QR Code e pode adicionar quantos números precisar." }
+      },
+      {
+        "@type": "Question",
+        "name": "Quanto tempo leva para começar?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Poucos minutos. Conectou o WhatsApp e criou o agente, já está atendendo. Nossa equipe ajuda na configuração no período de teste." }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
