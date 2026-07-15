@@ -106,12 +106,8 @@
       border-bottom: 1px solid var(--border);
     }
     .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; }
-    .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.35rem; letter-spacing: -.03em; }
-    .logo-mark {
-      width: 34px; height: 34px; border-radius: 9px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 1.15rem;
-    }
+    .logo { display: flex; align-items: center; gap: 11px; font-weight: 800; font-size: 1.6rem; letter-spacing: -.03em; }
+    .logo-mark { width: 44px; height: 44px; border-radius: 10px; display: block; object-fit: contain; }
     .nav-links { display: flex; align-items: center; gap: 30px; }
     .nav-links a { font-weight: 600; font-size: .96rem; color: var(--fg-soft); }
     .nav-links a:hover { color: var(--primary); }
@@ -490,7 +486,7 @@
   <header>
     <div class="wrap nav">
       <a class="logo" href="#" aria-label="zavy CRM">
-        <span class="logo-mark">z</span> zavy
+        <img class="logo-mark" src="favicon.png" alt="zavy" width="44" height="44"> zavy
       </a>
       <nav class="nav-links" aria-label="Principal">
         <a href="#recursos">Recursos</a>
@@ -835,7 +831,7 @@
         <div class="addon">
           <h4><span class="ai"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span> Usuário adicional</h4>
           <p>Amplie seu time de atendimento.</p>
-          <div class="aprice">R$ 49<span>/mês por usuário</span></div>
+          <div class="aprice">R$ 19<span>/mês por usuário</span></div>
         </div>
         <div class="addon">
           <h4><span class="ai"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-6 0v4"/><rect x="2" y="9" width="20" height="12" rx="2"/></svg></span> WhatsApp adicional</h4>
@@ -933,7 +929,7 @@
     <div class="wrap">
       <div class="foot-grid">
         <div>
-          <a class="logo" href="#"><span class="logo-mark">z</span> zavy</a>
+          <a class="logo" href="#"><img class="logo-mark" src="favicon.png" alt="zavy" width="44" height="44"> zavy</a>
           <p style="color:#94A3B8; margin-top:14px; max-width:34ch;">O CRM com inteligência artificial que atende no WhatsApp e transforma conversas em vendas.</p>
         </div>
         <div>
