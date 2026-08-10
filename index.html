@@ -279,6 +279,21 @@
     .plans-lead h2 { margin-bottom: 10px; }
     .plans-lead p { font-size: 1.1rem; }
 
+    /* Pricing toggle */
+    .billing-toggle { display:flex; align-items:center; justify-content:center; gap:14px; margin-bottom:36px; }
+    .billing-toggle span { font-size:.95rem; font-weight:600; color:var(--fg-mute); transition:color .15s; }
+    .billing-toggle span.active { color:var(--fg); }
+    .toggle-switch { position:relative; width:52px; height:28px; cursor:pointer; }
+    .toggle-switch input { opacity:0; width:0; height:0; }
+    .toggle-slider { position:absolute; inset:0; background:var(--border); border-radius:999px; transition:background .2s; }
+    .toggle-slider::before { content:""; position:absolute; left:3px; top:3px; width:22px; height:22px; border-radius:50%; background:#fff; box-shadow:var(--shadow-sm); transition:transform .2s; }
+    .toggle-switch input:checked + .toggle-slider { background:var(--primary); }
+    .toggle-switch input:checked + .toggle-slider::before { transform:translateX(24px); }
+    .billing-badge { display:inline-block; background:var(--whats); color:#fff; font-size:.72rem; font-weight:700; padding:3px 8px; border-radius:999px; margin-left:4px; vertical-align:middle; }
+    .price .yearly { display:none; }
+    body.yearly .price .monthly { display:none; }
+    body.yearly .price .yearly { display:flex; }
+
     /* All plans include */
     .included { display: grid; grid-template-columns: 1fr 1.25fr; gap: 44px; align-items: center; max-width: 1040px; margin: 56px auto 0; background: var(--bg-muted); border: 1px solid #D6E3FB; border-radius: 24px; padding: 44px 48px; }
     .included-left h3 { font-size: 1.7rem; line-height: 1.2; margin: 0 0 12px; }
@@ -726,13 +741,25 @@
         <p>Comece organizando seu WhatsApp e evolua para uma operação completa com CRM, Inteligência Artificial e automações — sem trocar de plataforma.</p>
       </div>
 
+      <div class="billing-toggle">
+        <span class="active" id="lbl-monthly">Mensal</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="billing-toggle" />
+          <span class="toggle-slider"></span>
+        </label>
+        <span id="lbl-yearly">Anual <span class="billing-badge">-20%</span></span>
+      </div>
+
       <div class="plans">
         <!-- Solo -->
         <div class="plan">
           <span class="promise">Organize seu WhatsApp</span>
           <h3>Solo</h3>
           <p class="sub">Seu WhatsApp profissional, organizado.</p>
-          <div class="price"><b>R$ 49</b><span>/mês</span></div>
+          <div class="price">
+            <span class="monthly"><b>R$ 49</b><span>/mês</span></span>
+            <span class="yearly"><b>R$ 39</b><span>/mês</span></span>
+          </div>
           <ul>
             <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>1</b> usuário</span></li>
             <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>1</b> WhatsApp</span></li>
@@ -750,14 +777,17 @@
           <span class="promise">Automatize seu atendimento</span>
           <h3>Smart</h3>
           <p class="sub">Seu primeiro agente de IA no ar.</p>
-          <div class="price"><b>R$ 89</b><span>/mês</span></div>
+          <div class="price">
+            <span class="monthly"><b>R$ 89</b><span>/mês</span></span>
+            <span class="yearly"><b>R$ 71</b><span>/mês</span></span>
+          </div>
           <ul>
             <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>1</b> usuário</span></li>
             <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>1</b> WhatsApp</span></li>
             <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Disparos <b>ilimitados</b></span></li>
             <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>2</b> quadros de CRM</span></li>
             <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>1</b> agente de IA</span></li>
-            <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>500</b> créditos IA</span></li>
+            <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>500</b> créditos IA <small style="color:var(--fg-mute);font-weight:400;">(~250 mensagens)</small></span></li>
             <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Contatos <b>1.000</b></span></li>
           </ul>
           <a class="btn btn-ghost" href="https://app.zavycrm.com/cadastrar">Começar agora</a>
@@ -772,14 +802,17 @@
           <span class="promise">Venda mais com IA e CRM</span>
           <h3>Business</h3>
           <p class="sub">A plataforma completa de vendas.</p>
-          <div class="price"><b>R$ 129</b><span>/mês</span></div>
+          <div class="price">
+            <span class="monthly"><b>R$ 129</b><span>/mês</span></span>
+            <span class="yearly"><b>R$ 103</b><span>/mês</span></span>
+          </div>
           <ul>
             <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>3</b> usuários</span></li>
             <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>3</b> WhatsApp</span></li>
             <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Disparos <b>ilimitados</b></span></li>
             <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>CRM <b>ilimitado</b></span></li>
             <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>2</b> agentes de IA</span></li>
-            <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>2.500</b> créditos IA</span></li>
+            <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>2.500</b> créditos IA <small style="color:var(--fg-mute);font-weight:400;">(~1.250 mensagens)</small></span></li>
             <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Contatos <b>5.000</b></span></li>
             <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>API</b> e <b>Webhooks</b></span></li>
           </ul>
@@ -791,14 +824,17 @@
           <span class="promise">Escalone sua operação</span>
           <h3>Growth</h3>
           <p class="sub">Para operações que precisam de escala.</p>
-          <div class="price"><b>R$ 249</b><span>/mês</span></div>
+          <div class="price">
+            <span class="monthly"><b>R$ 249</b><span>/mês</span></span>
+            <span class="yearly"><b>R$ 199</b><span>/mês</span></span>
+          </div>
           <ul>
             <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>8</b> usuários</span></li>
             <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>6</b> WhatsApp</span></li>
             <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Disparos <b>ilimitados</b></span></li>
             <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>CRM <b>ilimitado</b></span></li>
             <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>8</b> agentes de IA</span></li>
-            <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>10.000</b> créditos IA</span></li>
+            <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>10.000</b> créditos IA <small style="color:var(--fg-mute);font-weight:400;">(~5.000 mensagens)</small></span></li>
             <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Contatos <b>10.000</b></span></li>
             <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>API</b> e <b>Webhooks</b></span></li>
           </ul>
@@ -848,14 +884,14 @@
         <div class="addon">
           <h4><span class="ai"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></svg></span> Pacotes de créditos IA</h4>
           <table class="credit-table">
-            <thead><tr><th>Pacote</th><th>Valor</th></tr></thead>
+            <thead><tr><th>Pacote</th><th>Créditos</th><th>Valor/Mês</th></tr></thead>
             <tbody>
-              <tr><td>2.000 créditos</td><td>R$ 29,90</td></tr>
-              <tr><td>5.000 créditos</td><td>R$ 59,90</td></tr>
-              <tr><td>10.000 créditos</td><td>R$ 99,90</td></tr>
+              <tr><td>Iniciante</td><td>2.000</td><td>R$ 29,90</td></tr>
+              <tr><td>Crescimento</td><td>5.000</td><td>R$ 59,90</td></tr>
+              <tr><td>Escala</td><td>10.000</td><td>R$ 99,90</td></tr>
             </tbody>
           </table>
-          <p class="credit-note">≈ 1.000 / 2.500 / 5.000 mensagens usando GPT-5 Mini.</p>
+          <p class="credit-note">≈ 1.000 / 2.500 / 5.000 mensagens com GPT-5 Mini.</p>
         </div>
         <div class="addon">
           <h4><span class="ai"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span> Pacotes de contatos</h4>
@@ -1061,6 +1097,24 @@
           if (nav) nav.classList.remove('active');
         });
       });
+
+      // Billing toggle (mensal/anual)
+      var billingToggle = document.getElementById('billing-toggle');
+      var lblMonthly = document.getElementById('lbl-monthly');
+      var lblYearly = document.getElementById('lbl-yearly');
+      if (billingToggle) {
+        billingToggle.addEventListener('change', function () {
+          if (this.checked) {
+            document.body.classList.add('yearly');
+            lblMonthly.classList.remove('active');
+            lblYearly.classList.add('active');
+          } else {
+            document.body.classList.remove('yearly');
+            lblMonthly.classList.add('active');
+            lblYearly.classList.remove('active');
+          }
+        });
+      }
     })();
   </script>
 </body>
