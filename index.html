@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-N4GGM8VH');</script>
+  <!-- End Google Tag Manager -->
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MG29KRDE63"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MG29KRDE63');
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>zavy CRM — Atendimento no WhatsApp com Agentes de IA</title>
@@ -512,6 +527,10 @@
   </script>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N4GGM8VH"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <!-- HEADER -->
   <header>
@@ -1058,10 +1077,12 @@
 
         if (!data.nome || !data.whatsapp || !data.email) {
           setMsg('Por favor, preencha todos os campos.', false);
+          trackEvent('form_error', { error_type: 'empty_field' });
           return;
         }
         if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email)) {
           setMsg('Confira o e-mail digitado.', false);
+          trackEvent('form_error', { error_type: 'invalid_email' });
           form.email.focus();
           return;
         }
@@ -1082,7 +1103,9 @@
           .then(function (res) {
             if (res.ok) {
               form.reset();
+              formStarted = false;
               setMsg('Sucesso! Redirecionando você para concluir o cadastro...', true);
+              trackEvent('form_submit');
               
               // Redireciona preenchendo os dados coletados na URL de cadastro do zavy
               var cadastroUrl = 'https://app.zavycrm.com/cadastrar' +
@@ -1091,6 +1114,7 @@
                 '&whatsapp=' + encodeURIComponent(data.whatsapp);
               
               setTimeout(function () {
+                trackEvent('form_redirect');
                 window.location.href = cadastroUrl;
               }, 1500);
             } else {
@@ -1099,6 +1123,7 @@
           })
           .catch(function () {
             setMsg('Sem conexão. Verifique sua internet e tente de novo.', false);
+            trackEvent('form_error', { error_type: 'network_error' });
           })
           .finally(function () {
             btn.disabled = false;
@@ -1129,6 +1154,65 @@
             lblMonthly.classList.add('active');
             lblYearly.classList.remove('active');
           }
+          gtag('event', 'toggle_billing', { mode: this.checked ? 'yearly' : 'monthly' });
+        });
+      }
+
+      // --- Event Tracking ---
+      function trackEvent(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+
+      // Hero CTAs
+      document.querySelectorAll('a[href*="cadastrar"]').forEach(function (el) {
+        el.addEventListener('click', function () {
+          var section = el.closest('.hero') ? 'hero' : el.closest('.plan') ? 'pricing' : el.closest('.cta-final') ? 'form' : 'other';
+          trackEvent('click_trial', { location: section });
+        });
+      });
+      var howLink = document.querySelector('a[href="#como"]');
+      if (howLink) howLink.addEventListener('click', function () { trackEvent('click_how_it_works'); });
+
+      // Pricing - view_pricing (IntersectionObserver)
+      var pricingSection = document.getElementById('planos');
+      if (pricingSection) {
+        var pricingObs = new IntersectionObserver(function (entries) {
+          if (entries[0].isIntersecting) { trackEvent('view_pricing'); pricingObs.disconnect(); }
+        }, { threshold: 0.3 });
+        pricingObs.observe(pricingSection);
+      }
+
+      // Pricing - select_plan
+      document.querySelectorAll('.plan .btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var card = btn.closest('.plan');
+          if (!card) return;
+          var planName = (card.querySelector('h3') || {}).textContent || '';
+          var priceEl = card.querySelector('.price .monthly b, .price b');
+          var price = priceEl ? priceEl.textContent.replace(/[^\d]/g, '') : '';
+          var billing = document.body.classList.contains('yearly') ? 'yearly' : 'monthly';
+          trackEvent('select_plan', { plan: planName.toLowerCase(), price: price, billing: billing });
+        });
+      });
+
+      // WhatsApp float
+      var waFloat = document.querySelector('.wa-float');
+      if (waFloat) waFloat.addEventListener('click', function () { trackEvent('click_whatsapp'); });
+
+      // Specialist CTA
+      document.querySelectorAll('a[href="#trial"]').forEach(function (el) {
+        el.addEventListener('click', function () { trackEvent('click_specialist'); });
+      });
+
+      // Form events
+      var form = document.getElementById('leadForm');
+      if (form) {
+        var formStarted = false;
+        ['nome', 'whatsapp', 'email'].forEach(function (fname) {
+          var field = form[fname];
+          if (field) field.addEventListener('focus', function () {
+            if (!formStarted) { formStarted = true; trackEvent('form_start'); }
+          });
         });
       }
     })();
