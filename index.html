@@ -247,6 +247,15 @@
     .plan .promise { font-size: .78rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: .03em; margin-bottom: 3px; min-height: 2.8em; display: flex; align-items: flex-end; }
     .plan h3 { font-size: 1.4rem; margin: 0 0 3px; }
     .plan .sub { font-size: .8rem; line-height: 1.4; color: var(--fg-mute); min-height: 2.24em; margin-bottom: 14px; }
+    .plan .sub .tip { position:relative; cursor:help; border-bottom:1px dashed var(--fg-mute); }
+    .plan .sub .tip .tiptext {
+      visibility:hidden; opacity:0; position:absolute; bottom:calc(100% + 8px); left:50%; transform:translateX(-50%);
+      background:var(--fg); color:#fff; font-size:.78rem; font-weight:500; line-height:1.4;
+      padding:10px 14px; border-radius:10px; width:max-content; max-width:220px; text-align:center;
+      box-shadow:0 8px 20px rgba(15,23,42,.2); z-index:10; transition:opacity .15s, visibility .15s; pointer-events:none;
+    }
+    .plan .sub .tip .tiptext::after { content:""; position:absolute; top:100%; left:50%; transform:translateX(-50%); border:6px solid transparent; border-top-color:var(--fg); }
+    .plan .sub .tip:hover .tiptext { visibility:visible; opacity:1; }
     .plan .price { display: flex; align-items: flex-end; gap: 4px; margin-bottom: 2px; min-height: 2.4rem; }
     .plan .price b { font-size: 1.9rem; font-weight: 800; letter-spacing: -.02em; color: var(--fg); line-height: 1; }
     .plan .price span { font-size: .9rem; color: var(--fg-mute); font-weight: 600; }
@@ -740,8 +749,7 @@
     <div class="wrap">
       <div class="plans-lead">
         <span class="eyebrow">Planos</span>
-        <h2>Comece com o que você precisa. Evolua quando estiver pronto.</h2>
-        <p>Organize, automatize, estruture ou escale — o Zavy acompanha o momento da sua operação.</p>
+        <h2><span style="color:var(--primary);">Comece</span> com o que você precisa.<br><span style="color:var(--primary);">Evolua</span> quando estiver pronto.</h2>
       </div>
 
       <div class="billing-toggle">
@@ -758,7 +766,7 @@
         <div class="plan">
           <span class="promise">Organize seu WhatsApp</span>
           <h3>Solo</h3>
-          <p class="sub">Seu WhatsApp profissional, organizado.<br><small style="color:var(--fg-mute);">Para quem trabalha sozinho.</small></p>
+          <p class="sub"><span class="tip">Seu WhatsApp profissional, organizado.<span class="tiptext">Para quem trabalha sozinho e quer transformar o WhatsApp em um canal profissional de atendimento.</span></span></p>
           <div class="price">
             <span class="monthly"><b>R$ 69</b><span>/mês</span></span>
             <span class="yearly"><b>R$ 55</b><span>/mês</span></span>
@@ -778,7 +786,7 @@
         <div class="plan">
           <span class="promise">Automatize seu atendimento</span>
           <h3>Smart</h3>
-          <p class="sub">Comece a automatizar seu atendimento.<br><small style="color:var(--fg-mute);">Para quem já recebe volume.</small></p>
+          <p class="sub"><span class="tip">Comece a automatizar seu atendimento.<span class="tiptext">Para quem já recebe volume e precisa de CRM e IA para ganhar produtividade.</span></span></p>
           <div class="price">
             <span class="monthly"><b>R$ 99</b><span>/mês</span></span>
             <span class="yearly"><b>R$ 79</b><span>/mês</span></span>
@@ -803,7 +811,7 @@
           </span>
           <span class="promise">Venda mais com IA e CRM</span>
           <h3>Business</h3>
-          <p class="sub">A plataforma completa para sua operação comercial.<br><small style="color:var(--fg-mute);">Para empresas com equipe.</small></p>
+          <p class="sub"><span class="tip">A plataforma completa para sua operação comercial.<span class="tiptext">Para empresas com equipe que precisam controlar equipe, oportunidades, funil e integrações.</span></span></p>
           <div class="price">
             <span class="monthly"><b>R$ 129</b><span>/mês</span></span>
             <span class="yearly"><b>R$ 103</b><span>/mês</span></span>
@@ -825,7 +833,7 @@
         <div class="plan">
           <span class="promise">Escalone sua operação</span>
           <h3>Growth</h3>
-          <p class="sub">Para operações que precisam de escala.<br><small style="color:var(--fg-mute);">Empresas em expansão.</small></p>
+          <p class="sub"><span class="tip">Para operações que precisam de escala.<span class="tiptext">Para empresas em expansão que precisam de mais estrutura e capacidade.</span></span></p>
           <div class="price">
             <span class="monthly"><b>R$ 249</b><span>/mês</span></span>
             <span class="yearly"><b>R$ 199</b><span>/mês</span></span>
@@ -844,8 +852,22 @@
         </div>
       </div>
 
-      <!-- Closing phrase -->
-      <p style="text-align:center; font-size:1.15rem; font-weight:700; color:var(--fg); max-width:600px; margin:40px auto 0;">Comece com o que você precisa hoje.<br> Evolua quando seu negócio estiver pronto.</p>
+      <!-- Included in all plans -->
+      <div class="included">
+        <div class="included-left">
+          <h3>O que está incluso em todos os planos?</h3>
+          <p>Sua operação completa, sem letras miúdas ou custos ocultos.</p>
+        </div>
+        <ul class="included-right">
+          <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Chat multiatendimento</li>
+          <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Dashboard</li>
+          <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Histórico de conversas</li>
+          <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Etiquetas</li>
+          <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Campos personalizados</li>
+          <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Respostas rápidas</li>
+          <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Importação CSV</li>
+        </ul>
+      </div>
     </div>
   </section>
 
