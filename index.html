@@ -75,7 +75,7 @@
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: 72px; }
     body {
       margin: 0;
       font-family: var(--font);
@@ -99,8 +99,7 @@
       color: var(--primary); background: var(--bg-muted);
       padding: 7px 14px; border-radius: 999px; margin-bottom: 20px;
     }
-    .section { padding: 84px 0; }
-    section[id] { scroll-margin-top: 80px; }
+    .section { padding: 12px 0 clamp(32px, 4vw, 64px); }
     .section-head { max-width: 680px; margin: 0 auto 52px; text-align: center; }
     .section-head p { font-size: 1.12rem; }
 
@@ -432,7 +431,7 @@
         border-bottom: none;
       }
       .menu-btn { display: block; }
-      .section { padding: 60px 0; }
+      .section { padding: 12px 0 clamp(24px, 3vw, 36px); }
       .hero { padding: 48px 0 20px; }
       .mock-body { grid-template-columns: 1fr; gap: 20px; }
       .addons-grid { grid-template-columns: 1fr; }
@@ -541,7 +540,6 @@
       <nav class="nav-links" aria-label="Principal">
         <a href="#recursos">Recursos</a>
         <a href="#como">Como funciona</a>
-        <a href="#depoimentos">Clientes</a>
         <a href="#planos">Planos</a>
         <a href="#faq">Dúvidas</a>
       </nav>
@@ -631,8 +629,7 @@
   <section class="section" id="recursos">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow">Tudo em um só lugar</span>
-        <h2>Um time de atendimento que nunca dorme</h2>
+        <h2>Tudo em um só lugar<br><span style="font-size:clamp(1.1rem, 2.2vw, 1.6rem); font-weight:400; color:var(--fg-soft);">Um time de atendimento que nunca dorme</span></h2>
         <p>O zavy junta CRM, WhatsApp e inteligência artificial para você atender mais gente, com menos gente.</p>
       </div>
       <div class="features-grid">
@@ -674,7 +671,6 @@
   <section class="section how" id="como">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow">Simples de começar</span>
         <h2>No ar em 3 passos</h2>
         <p>Sem instalar nada, sem programador. Você configura, a IA trabalha.</p>
       </div>
@@ -699,10 +695,9 @@
   </section>
 
   <!-- BENEFITS SPLIT -->
-  <section class="section">
+  <section class="section" style="background:#fff;">
     <div class="wrap split">
       <div>
-        <span class="eyebrow">Por que muda o jogo</span>
         <h2>Pare de perder venda porque ninguém respondeu a tempo</h2>
         <p>A maioria dos clientes compra de quem responde primeiro. Com o zavy, ninguém fica esperando — nem de madrugada, nem no fim de semana.</p>
         <ul class="blist">
@@ -741,7 +736,6 @@
   <section class="section how" id="depoimentos">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow">Quem usa, recomenda</span>
         <h2>Empresas que venderam mais com o zavy</h2>
       </div>
       <div class="tgrid">
@@ -1029,7 +1023,6 @@
           <ul>
             <li><a href="#recursos">Recursos</a></li>
             <li><a href="#como">Como funciona</a></li>
-            <li><a href="#depoimentos">Clientes</a></li>
             <li><a href="https://app.zavycrm.com/cadastrar">Testar grátis</a></li>
           </ul>
         </div>
